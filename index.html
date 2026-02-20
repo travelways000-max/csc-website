@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My CSC Store</title>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body {
+    background-color: black;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="bg-black p-4">
+<nav class="container mx-auto flex justify-between items-center">
+<a class="text-xl font-bold text-white">My CSC Store</a>
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="text-center py-16 bg-indigo-600">
+<h1 class="text-4xl font-bold mb-4">Common Service Centre</h1>
+<p>Withdrawal & Transfer Services Available</p>
+</section>
+
+<!-- WITHDRAWAL SECTION -->
+<section id="withdrawal" class="py-16 text-center">
+<h2 class="text-3xl font-bold mb-6">1st Withdrawal</h2>
+
+<button id="openWithdrawalForm"
+class="bg-indigo-600 px-6 py-3 rounded-lg">
+Withdraw Money
+</button>
+</section>
+
+<!-- WITHDRAWAL FORM (Hidden Initially) -->
+<section id="withdrawal-form" class="hidden py-16 bg-gray-900 text-center">
+<h2 class="text-2xl font-bold mb-6">Enter Withdrawal Details</h2>
+
+<form action="https://formsubmit.co/travelways000@gmail.com" method="POST" class="max-w-md mx-auto space-y-4">
+
+<input type="hidden" name="_captcha" value="false">
+
+<input type="text" name="Name" placeholder="Your Name"
+class="w-full p-3 rounded text-black" required>
+
+<input type="number" name="Amount" placeholder="Enter Amount"
+class="w-full p-3 rounded text-black" required>
+
+<button type="submit"
+class="bg-indigo-600 w-full py-3 rounded">
+Submit Withdrawal
+</button>
+
+</form>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="py-16 text-center bg-gray-800">
+<h2 class="text-3xl font-bold mb-6">Common Service Centre Video</h2>
+
+<div class="flex justify-center">
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/uxbU3eE4wdE"
+frameborder="0"
+allowfullscreen
+class="rounded-lg">
+</iframe>
+</div>
+</section>
+
+<!-- SCRIPT -->
+<script>
+document.getElementById("openWithdrawalForm").addEventListener("click", function() {
+document.getElementById("withdrawal-form").classList.remove("hidden");
+document.getElementById("withdrawal-form").scrollIntoView({behavior:"smooth"});
+});
+</script>
+
+</body>
+</html>
