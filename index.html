@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My CSC Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md p-4">
+        <nav class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="w-full flex justify-between items-center mb-4 md:mb-0">
+                <a href="#" class="text-xl font-bold text-gray-800">My CSC Store</a>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="navigation-menu" class="hidden md:flex flex-col md:flex-row md:space-x-4 md:space-y-0 space-y-2 text-center w-full md:w-auto">
+                <a href="#home" class="text-gray-600 hover:text-indigo-600 font-medium py-2">Home</a>
+                <a href="#preregistration" class="text-gray-600 hover:text-indigo-600 font-medium py-2">Pre-registration</a>
+                <a href="#about" class="text-gray-600 hover:text-indigo-600 font-medium py-2">About</a>
+                <a href="#services" class="text-gray-600 hover:text-indigo-600 font-medium py-2">Services</a>
+                <a href="#gallery" class="text-gray-600 hover:text-indigo-600 font-medium py-2">Gallery</a>
+                <a href="#contact" class="text-gray-600 hover:text-indigo-600 font-medium py-2">Contact</a>
+                <a href="#feedback" class="text-gray-600 hover:text-indigo-600 font-medium py-2">Feedback</a>
+                <button id="download-button" class="bg-indigo-600 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:bg-indigo-700 transition duration-300">Download Website</button>
+                <button id="share-button" class="bg-teal-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:bg-teal-600 transition duration-300">Share Website</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-indigo-600 text-white py-20 px-4">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+                Your Local Common Service Centre
+            </h1>
+            <p class="text-lg md:text-xl font-light mb-8">
+                Providing essential digital services and support in Shahada, Vaijali.
+            </p>
+            <a href="#preregistration" class="bg-white text-indigo-600 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition duration-300">Pre-register for Services</a>
+        </div>
+    </section>
+
+    <!-- Pre-registration Section -->
+    <section id="preregistration" class="py-16 px-4">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-3xl font-bold mb-4">Pre-register for a Service</h2>
+            <p class="text-gray-600 mb-8">
+                Save time by pre-registering for your required service or payment.
+            </p>
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <form id="preregistration-form">
+                    <div class="mb-4">
+                        <input type="text" id="preregistration-name" name="name" placeholder="Full Name" class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <div class="mb-4">
+                        <input type="tel" id="preregistration-phone" name="phone" placeholder="Contact Number" class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-left font-semibold mb-2">Service Type</label>
+                        <select id="preregistration-service" name="service" class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                            <option value="" disabled selected>Select a Service</option>
+                            <option value="Aadhaar Services">Aadhaar Services</option>
+                            <option value="Pan Card Applications">Pan Card Applications</option>
+                            <option value="Passport Services">Passport Services</option>
+                            <option value="Withdrawal">Withdrawal</option>
+                            <option value="Transfer">Transfer</option>
+                            <option value="Deposit">Deposit</option>
+                        </select>
+                    </div>
+                    <div id="additional-transaction-info" class="mb-4 hidden">
+                        <textarea id="preregistration-details" name="details" placeholder="Please provide more details about your transaction" rows="3" class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-md hover:bg-indigo-700 transition duration-300">
+                        Submit Pre-registration
+                    </button>
+                </form>
+                <div id="preregistration-success" class="mt-4 text-green-600 font-bold hidden">
+                    Pre-registration successful! We will contact you shortly.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-4">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-3xl font-bold mb-4">About My CSC Store</h2>
+            <p class="text-gray-600 leading-relaxed">
+                As a proud CSC store holder, I am dedicated to bridging the digital divide by providing a wide range of government and private digital services to my community in Shahada, Vaijali. My mission is to make these services accessible and easy for everyone.
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="bg-white py-16 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service Card 1: Aadhaar Services -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.5l6 6-6 6M6 10.5l6-6-6-6"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Aadhaar Services</h3>
+                    <p class="text-gray-600">
+                        Aadhaar card enrollment, update, and correction services.
+                    </p>
+                </div>
+                <!-- Service Card 2: Pan Card Applications -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Pan Card Applications</h3>
+                    <p class="text-gray-600">
+                        Assistance with new PAN card applications and corrections.
+                    </p>
+                </div>
+                <!-- Service Card 3: Passport Services -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 9l-6 6M9 9l6 6"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Passport Services</h3>
+                    <p class="text-gray-600">
+                        Help with passport applications and renewal forms.
+                    </p>
+                </div>
+                <!-- Service Card 4: Transaction Services -->
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9v-3m0 0a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2v-3m-6-13H9m4-2a2 2 0 012-2h-2a2 2 0 01-2 2v2a2 2 0 012 2h2v-2zm-6 2v2m0 0a2 2 0 01-2-2h-2a2 2 0 01-2 2v2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Transaction Services</h3>
+                    <ul class="list-disc list-inside text-gray-600 ml-4">
+                        <li>Withdrawal</li>
+                        <li>Transfer</li>
+                        <li>Deposit</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8">Our Store Gallery</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <img src="https://placehold.co/600x400/808080/FFFFFF?text=Store+Interior+1" alt="Interior view of the CSC store" class="rounded-lg shadow-md w-full h-auto">
+                <img src="https://placehold.co/600x400/808080/FFFFFF?text=Store+Interior+2" alt="Interior view of the CSC store with a bed" class="rounded-lg shadow-md w-full h-auto">
+                <img src="https://placehold.co/600x400/808080/FFFFFF?text=More+Pictures+Coming+Soon" alt="Placeholder for more pictures" class="rounded-lg shadow-md w-full h-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-white py-16 px-4">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-3xl font-bold mb-4">Contact & Location</h2>
+            <p class="text-gray-600 mb-4">
+                Feel free to reach out to us or visit our store.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center md:space-x-8 space-y-4 md:space-y-0 mb-8">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md w-full md:w-1/2">
+                    <h3 class="text-xl font-semibold mb-2">Contact Details</h3>
+                    <p class="text-gray-600 font-medium">Phone: <a href="tel:+919156921372" class="text-indigo-600 hover:underline">+91 9156921372</a></p>
+                    <p class="text-gray-600 font-medium">Email: <a href="mailto:travelways000@gmail.com" class="text-indigo-600 hover:underline">travelways000@gmail.com</a></p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md w-full md:w-1/2">
+                    <h3 class="text-xl font-semibold mb-2">Location</h3>
+                    <p class="text-gray-600">Shahada, Vaijali</p>
+                    <a href="https://maps.google.com/?q=Shahada,Vaijali" target="_blank" class="text-indigo-600 font-medium hover:underline">View on Map</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section id="feedback" class="py-16 px-4">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-3xl font-bold mb-4">Send Us Feedback</h2>
+            <p class="text-gray-600 mb-8">
+                We'd love to hear your thoughts and suggestions!
+            </p>
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <form>
+                    <div class="mb-4">
+                        <input type="text" placeholder="Your Name" class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div class="mb-4">
+                        <input type="email" placeholder="Your Email" class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div class="mb-4">
+                        <textarea placeholder="Your Feedback" rows="5" class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-md hover:bg-indigo-700 transition duration-300">
+                        Send Feedback
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-6 px-4">
+        <p>&copy; 2024 My CSC Store. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const preregistrationForm = document.getElementById('preregistration-form');
+            const preregistrationSuccess = document.getElementById('preregistration-success');
+            const serviceSelect = document.getElementById('preregistration-service');
+            const additionalInfo = document.getElementById('additional-transaction-info');
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const navigationMenu = document.getElementById('navigation-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                navigationMenu.classList.toggle('hidden');
+                navigationMenu.classList.toggle('flex');
+            });
+
+            // Show/hide additional info based on service selection
+            serviceSelect.addEventListener('change', (e) => {
+                const value = e.target.value;
+                if (value === 'Withdrawal' || value === 'Transfer' || value === 'Deposit') {
+                    additionalInfo.classList.remove('hidden');
+                } else {
+                    additionalInfo.classList.add('hidden');
+                }
+            });
+
+            preregistrationForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // For now, this just displays a success message.
+                // You would need a backend service to actually send the email.
+                preregistrationSuccess.classList.remove('hidden');
+                preregistrationForm.reset();
+                additionalInfo.classList.add('hidden');
+                
+                // You could collect the data like this for an email service
+                const name = document.getElementById('preregistration-name').value;
+                const phone = document.getElementById('preregistration-phone').value;
+                const service = document.getElementById('preregistration-service').value;
+                const details = document.getElementById('preregistration-details').value;
+                
+                const subject = `New Pre-registration from ${name}`;
+                const body = `Name: ${name}\nPhone: ${phone}\nService: ${service}\nDetails: ${details || 'N/A'}`;
+                
+                // In a real-world scenario, you would use a backend service to send this email.
+                console.log(`Pre-registration Data to Send:
+                Subject: ${subject}
+                Body: ${body}
+                `);
+            });
+            
+            // Download functionality
+            const downloadButton = document.getElementById('download-button');
+            downloadButton.addEventListener('click', () => {
+                const content = document.documentElement.outerHTML;
+                const blob = new Blob([content], {type: 'text/html'});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'my_csc_website.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+
+            // Share functionality
+            const shareButton = document.getElementById('share-button');
+            shareButton.addEventListener('click', async () => {
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: 'My CSC Store Website',
+                            text: 'Check out my new CSC store website!',
+                            url: window.location.href,
+                        });
+                        console.log('Website shared successfully');
+                    } catch (error) {
+                        console.error('Error sharing:', error);
+                    }
+                } else {
+                    alert('Sharing is not supported on this browser.');
+                }
+            });
+        });
+    </script>
+</body>
+                          </html>
+                          
