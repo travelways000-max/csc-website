@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My CSC Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #000000; color: white; }
+
+    /* Withdrawal Tab Modal */
+    #withdrawal-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    #withdrawal-modal.active { display: flex; }
+    .modal-box {
+      background: #1e1e2e;
+      border: 1px solid #4f46e5;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 480px;
+      padding: 2rem;
+      position: relative;
+      animation: popIn 0.25s ease;
+    }
+    @keyframes popIn {
+      from { transform: scale(0.85); opacity: 0; }
+      to   { transform: scale(1);    opacity: 1; }
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px; right: 16px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #aaa;
+    }
+    .modal-close:hover { color: #fff; }
+  </style>
+</head>
+<body>
+<div id="withdrawal-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <span class="modal-close" id="close-modal" title="Close">&times;</span>
+    <h2 id="modal-title" class="text-2xl font-bold text-indigo-400 mb-1">Withdrawal Service</h2>
+    <p class="text-gray-400 text-sm mb-6">Fill in your details to process a withdrawal.</p>
+
+    <form id="withdrawal-form" class="space-y-4">
+      <div>
+        <label class="block text-gray-300 text-sm font-semibold mb-1">Full Name</label>
+        <input type="text" id="w-name" placeholder="Enter your full name"
+          class="w-full p-3 rounded-lg bg-gray-800 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+      </div>
+      <div>
+        <label class="block text-gray-300 text-sm font-semibold mb-1">Account / Aadhaar Number</label>
+        <input type="text" id="w-account" placeholder="Enter account or Aadhaar number"
+          class="w-full p-3 rounded-lg bg-gray-800 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+      </div>
+      <div>
+        <label class="block text-gray-300 text-sm font-semibold mb-1">Age</label>
+        <input type="number" id="w-age" placeholder="Enter your age" min="1" max="120"
+          class="w-full p-3 rounded-lg bg-gray-800 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+      </div>
+      <div>
+        <label class="block text-gray-300 text-sm font-semibold mb-1">Amount (₹)</label>
+        <input type="number" id="w-amount" placeholder="Enter withdrawal amount" min="1"
+          class="w-full p-3 rounded-lg bg-gray-800 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+      </div>
+      <div>
+        <label class="block text-gray-300 text-sm font-semibold mb-1">Additional Notes (Optional)</label>
+        <textarea id="w-notes" rows="2" placeholder="Any additional information"
+          class="w-full p-3 rounded-lg bg-gray-800 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+      </div>
+      <button type="submit"
+        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg transition duration-300">
+        Submit Withdrawal Request
+      </button>
+    </form>
+
+    <div id="withdrawal-success" class="hidden mt-4 text-green-400 font-semibold text-center">
+      ✅ Withdrawal request submitted! We will contact you shortly.
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     HEADER
+     ══════════════════════════════════════ -->
+<header class="bg-black shadow-md p-4">
+  <nav class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+    <div class="w-full flex justify-between items-center mb-4 md:mb-0">
+      <a href="#" class="text-xl font-bold text-white">My CSC Store</a>
+      <button id="mobile-menu-button" class="md:hidden text-gray-400 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+        </svg>
+      </button>
+    </div>
+
+    <div id="navigation-menu" class="hidden md:flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0 text-center w-full md:w-auto">
+      <a href="#home"             class="text-gray-400 hover:text-indigo-400 font-medium py-2">Home</a>
+      <a href="#preregistration"  class="text-gray-400 hover:text-indigo-400 font-medium py-2">Pre-registration</a>
+      <a href="#about"            class="text-gray-400 hover:text-indigo-400 font-medium py-2">About</a>
+      <a href="#services"         class="text-gray-400 hover:text-indigo-400 font-medium py-2">Services</a>
+      <a href="#gallery"          class="text-gray-400 hover:text-indigo-400 font-medium py-2">Gallery</a>
+      <a href="#contact"          class="text-gray-400 hover:text-indigo-400 font-medium py-2">Contact</a>
+      <a href="#feedback"         class="text-gray-400 hover:text-indigo-400 font-medium py-2">Feedback</a>
+      <button id="download-button" class="bg-indigo-600 text-white font-bold py-2 px-4 rounded-full hover:bg-indigo-700 transition">Download Website</button>
+      <button id="share-button"   class="bg-teal-500 text-white font-bold py-2 px-4 rounded-full hover:bg-teal-600 transition">Share Website</button>
+    </div>
+  </nav>
+</header>
+
+<!-- ══════════════════════════════════════
+     HERO
+     ══════════════════════════════════════ -->
+<section id="home" class="bg-indigo-600 text-white py-20 px-4">
+  <div class="container mx-auto text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">Your Local Common Service Centre</h1>
+    <p class="text-lg md:text-xl font-light mb-8">Providing essential digital services and support in Shahada, Vaijali.</p>
+    <a href="#preregistration" class="bg-white text-indigo-600 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition">Pre-register for Services</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PRE-REGISTRATION
+     ══════════════════════════════════════ -->
+<section id="preregistration" class="py-16 px-4">
+  <div class="container mx-auto max-w-4xl text-center">
+    <h2 class="text-3xl font-bold mb-4">Pre-register for a Service</h2>
+    <p class="text-gray-400 mb-8">Save time by pre-registering for your required service or payment.</p>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <form id="preregistration-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="mb-4">
+          <input type="text" id="preregistration-name" name="name" placeholder="Full Name"
+            class="w-full p-3 rounded-md border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+        </div>
+        <div class="mb-4">
+          <input type="tel" id="preregistration-phone" name="phone" placeholder="Contact Number"
+            class="w-full p-3 rounded-md border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-left font-semibold mb-2">Service Type</label>
+          <select id="preregistration-service" name="service"
+            class="w-full p-3 rounded-md border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+            <option value="" disabled selected>Select a Service</option>
+            <option value="Aadhaar Services">Aadhaar Services</option>
+            <option value="Pan Card Applications">Pan Card Applications</option>
+            <option value="Passport Services">Passport Services</option>
+            <option value="Withdrawal">Withdrawal</option>
+            <option value="Transfer">Transfer</option>
+            <option value="Deposit">Deposit</option>
+          </select>
+        </div>
+        <div id="additional-transaction-info" class="mb-4 hidden">
+          <textarea id="preregistration-details" name="details" placeholder="Please provide more details about your transaction" rows="3"
+            class="w-full p-3 rounded-md border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-md hover:bg-indigo-700 transition">
+          Submit Pre-registration
+        </button>
+      </form>
+      <div id="preregistration-success" class="mt-4 text-green-600 font-bold hidden">
+        Pre-registration successful! We will contact you shortly.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     WITHDRAWAL SECTION (click button → opens modal like new tab)
+     ══════════════════════════════════════ -->
+<section id="withdrawal" class="py-16 px-4 bg-gray-900 text-white">
+  <div class="container mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-2">1st Withdrawal</h2>
+    <p class="text-gray-400 mb-6">Click below to open the withdrawal form.</p>
+    <div class="flex justify-center space-x-4 flex-wrap gap-3">
+      <button id="open-withdrawal-age"
+        class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-lg font-semibold transition">
+        Age-based Withdrawal
+      </button>
+      <button id="open-withdrawal-money"
+        class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-lg font-semibold transition">
+        Money Withdrawal
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     TRANSFER SECTION
+     ══════════════════════════════════════ -->
+<section id="transfer" class="py-16 px-4 bg-black text-white">
+  <div class="container mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-6">2nd Transfer</h2>
+    <div class="flex justify-center space-x-4 flex-wrap gap-3">
+      <button class="bg-teal-600 hover:bg-teal-700 px-6 py-3 rounded-lg font-semibold transition">Age</button>
+      <button class="bg-teal-600 hover:bg-teal-700 px-6 py-3 rounded-lg font-semibold transition">Money</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ABOUT
+     ══════════════════════════════════════ -->
+<section id="about" class="py-16 px-4">
+  <div class="container mx-auto max-w-4xl">
+    <h2 class="text-3xl font-bold text-center mb-10">About My CSC Store</h2>
+    <div class="flex flex-col md:flex-row items-center gap-10">
+      <!-- Owner Photo -->
+      <div class="flex-shrink-0 text-center">
+        <img src="data:image/jpeg;base64,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
